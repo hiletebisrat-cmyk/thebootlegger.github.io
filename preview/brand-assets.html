@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootlegger — Brand Assets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    body { padding: var(--space-2xl); background: var(--bg); max-width: 1000px; }
+    .preview-title { font-family: var(--font-display); font-size: var(--text-h1); margin-bottom: var(--space-xl); }
+    .section-title { font-family: var(--font-display); font-size: var(--text-h2); margin-bottom: var(--space-lg); margin-top: var(--space-3xl); }
+    .asset-row { display: flex; gap: var(--space-2xl); flex-wrap: wrap; align-items: flex-start; }
+    .asset-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-xl); text-align: center; min-width: 200px; }
+    .asset-card img { max-width: 100%; height: auto; margin-bottom: var(--space-md); object-fit: contain; }
+    .asset-label { font-family: var(--font-mono); font-size: var(--text-small); color: var(--muted); }
+    .asset-path { font-family: var(--font-mono); font-size: var(--text-meta); color: var(--muted); margin-top: var(--space-xs); }
+    .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-md); }
+    .file-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-md); }
+    .file-name { font-family: var(--font-mono); font-size: var(--text-small); font-weight: 500; }
+    .file-desc { font-size: var(--text-small); color: var(--muted); margin-top: var(--space-xs); }
+  </style>
+</head>
+<body>
+  <h1 class="preview-title">Brand Assets</h1>
+
+  <h2 class="section-title">Primary Logo</h2>
+  <div class="asset-row">
+    <div class="asset-card">
+      <img src="../build/logo.avif" alt="The Bootlegger Italian Bistro logo" style="max-height: 140px;">
+      <div class="asset-label">The Bootlegger Logo</div>
+      <div class="asset-path">build/logo.avif</div>
+    </div>
+    <div class="asset-card">
+      <img src="../build/icon.avif" alt="The Bootlegger brand icon" style="max-height: 80px;">
+      <div class="asset-label">Brand Icon</div>
+      <div class="asset-path">build/icon.avif</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Merchandise Product Photos</h2>
+  <div class="asset-row">
+    <div class="asset-card">
+      <img src="../assets/merch/mpqzokmv-Tumbler.jpg" alt="Bootlegger Tumbler" style="max-height: 120px;">
+      <div class="asset-label">Stainless Tumbler</div>
+      <div class="asset-path">assets/merch/</div>
+    </div>
+    <div class="asset-card">
+      <img src="../assets/merch/mpqzokmt-hoodie.jpg" alt="Bootlegger Hoodie" style="max-height: 120px;">
+      <div class="asset-label">Zip Hoodie</div>
+      <div class="asset-path">assets/merch/</div>
+    </div>
+    <div class="asset-card">
+      <img src="../assets/merch/mpqzokmv-totebag.jpg" alt="Bootlegger Tote Bag" style="max-height: 120px;">
+      <div class="asset-label">Canvas Tote</div>
+      <div class="asset-path">assets/merch/</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Build Assets</h2>
+  <div class="file-grid">
+    <div class="file-item"><div class="file-name">build/logo.avif</div><div class="file-desc">Primary brand logo (AVIF)</div></div>
+    <div class="file-item"><div class="file-name">build/icon.avif</div><div class="file-desc">Icon variant of the logo</div></div>
+    <div class="file-item"><div class="file-name">assets_bootl.avif</div><div class="file-desc">Source logo asset</div></div>
+    <div class="file-item"><div class="file-name">assets/merch/</div><div class="file-desc">9 product photos (tumbler, glass, mug, hoodie, tees, tote, stickers)</div></div>
+  </div>
+
+  <h2 class="section-title">Brand Identity Summary</h2>
+  <div class="asset-card" style="text-align: left; max-width: 600px;">
+    <p style="font-family: var(--font-display); font-size: var(--text-h3); margin-bottom: var(--space-sm);">The Bootlegger Italian Bistro</p>
+    <p style="font-size: var(--text-body); color: var(--muted); margin-bottom: var(--space-md);">Dining · Cocktails · Entertainment · Gaming</p>
+    <p style="font-size: var(--text-small); color: var(--muted);">7700 Las Vegas Blvd S, Las Vegas NV 89123 — South Strip</p>
+    <p style="font-size: var(--text-small); color: var(--muted);">(702) 736-4939 · bootleggerlasvegas.com</p>
+    <p style="font-size: var(--text-small); color: var(--muted); margin-top: var(--space-md);">Fourth-generation, family-owned since 1949. Old Vegas tradition with modern Italian hospitality.</p>
+  </div>
+</body>
+</html>

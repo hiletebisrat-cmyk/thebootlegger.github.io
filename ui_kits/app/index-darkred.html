@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Bootlegger Italian Bistro — Dark Red Variant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../colors_and_type-darkred.css">
+  <style>
+    body {
+      margin: 0;
+      background: oklch(97.5% 0.012 60);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #root {
+      width: 100%;
+      max-width: 1280px;
+      height: 90vh;
+      min-height: 600px;
+      margin: 20px auto;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    #root:empty::after {
+      content: 'Loading The Bootlegger\u2026';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-family: 'Cormorant Garamond', 'Cormorant', serif;
+      font-size: 1.5rem;
+      color: oklch(48% 0.03 40);
+      background: oklch(100% 0 0);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 1320px) {
+      #root { margin: 0; height: 100vh; max-width: 100%; border-radius: 0; }
+      body { padding: 0; }
+    }
+    @media (max-width: 767px) {
+      #root { height: 100vh; max-width: 100%; border-radius: 0; margin: 0; }
+      .topbar-location { display: none !important; }
+      .topbar-inner { padding: 8px 12px !important; }
+      .topbar-gap { gap: 6px !important; }
+    }
+    @media (max-width: 500px) {
+      .topbar-hours { display: none !important; }
+      .topbar-shrink-btn { font-size: 0.72rem !important; padding: 6px 14px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-drawer] { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Audit forwarding references -->
+  <script src="components/HeroSection.jsx"></script>
+  <script src="components/Sidebar.jsx"></script>
+  <script src="components/App.jsx"></script>
+
+  <!-- Production React (smaller + faster than dev) -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+
+  <!-- Bootstrap: try cache first, otherwise transpile via Babel once -->
+  <script>
+  (function(){
+    var CACHE_KEY = 'bl_app_compiled_v9_darkred';
+    var root = document.getElementById('root');
+
+    function renderApp() {
+      try {
+        if (typeof window.App === 'function') {
+          ReactDOM.createRoot(root).render(React.createElement(window.App));
+          return true;
+        }
+      } catch(e) {
+        root.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;padding:40px;font-family:Cormorant Garamond,serif;font-size:1.25rem;color:var(--muted);text-align:center;line-height:1.6">Render error: ' + e.message + '</div>';
+        return false;
+      }
+      root.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;padding:40px;font-family:Cormorant Garamond,serif;font-size:1.25rem;color:var(--muted);text-align:center;line-height:1.6">App component not found</div>';
+      return false;
+    }
+
+    function execCode(code) {
+      try {
+        (new Function(code))();
+      } catch(e) {
+        root.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;padding:40px;font-family:Cormorant Garamond,serif;font-size:1.25rem;color:var(--muted);text-align:center;line-height:1.6">Compile error: ' + e.message + '</div>';
+        return false;
+      }
+      return renderApp();
+    }
+
+    try {
+      var cached = localStorage.getItem(CACHE_KEY);
+      if (cached && cached.length > 500) {
+        if (execCode(cached)) return;
+        try { localStorage.removeItem(CACHE_KEY); } catch(_) {}
+      }
+    } catch(_) {}
+
+    root.innerHTML = '';
+    root.style.background = 'oklch(97.5% 0.012 60)';
+
+    var babelEl = document.createElement('script');
+    babelEl.src = 'https://unpkg.com/@babel/standalone@7.29.0/babel.min.js';
+    babelEl.crossOrigin = 'anonymous';
+    babelEl.onload = function() {
+      fetch('components/all.jsx')
+        .then(function(r) {
+          if (!r.ok) throw new Error('Failed to fetch all.jsx: ' + r.status);
+          return r.text();
+        })
+        .then(function(source) {
+          try {
+            var result = Babel.transform(source, { presets: ['react'], comments: false });
+            var code = result.code;
+            try { localStorage.setItem(CACHE_KEY, code); } catch(_) {}
+            execCode(code);
+          } catch(e) {
+            root.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;padding:40px;font-family:Cormorant Garamond,serif;font-size:1.25rem;color:var(--muted);text-align:center;line-height:1.6">Transpile error: ' + e.message + '</div>';
+          }
+        })
+        .catch(function(e) {
+          root.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;padding:40px;font-family:Cormorant Garamond,serif;font-size:1.25rem;color:var(--muted);text-align:center;line-height:1.6">Network error: ' + e.message + '</div>';
+        });
+    };
+    babelEl.onerror = function() {
+      root.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;padding:40px;font-family:Cormorant Garamond,serif;font-size:1.25rem;color:var(--muted);text-align:center;line-height:1.6">Failed to load Babel. Please refresh or check your connection.</div>';
+    };
+    document.body.appendChild(babelEl);
+  })();
+  </script>
+</body></html>

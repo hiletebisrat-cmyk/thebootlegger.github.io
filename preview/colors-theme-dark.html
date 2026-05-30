@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootlegger — Dark Theme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(12% 0.01 250);
+      --surface: oklch(18% 0.015 250);
+      --surface-warm: oklch(20% 0.02 40);
+      --fg: oklch(92% 0.005 60);
+      --muted: oklch(60% 0.015 50);
+      --border: oklch(28% 0.015 250);
+      --accent-wine: oklch(55% 0.18 28);
+      --accent-gold: oklch(72% 0.14 70);
+      --accent-olive: oklch(52% 0.10 120);
+      --accent-navy: oklch(15% 0.02 260);
+      --state-success: oklch(58% 0.14 145);
+      --state-warning: oklch(68% 0.14 85);
+      --state-error: oklch(55% 0.18 28);
+      --state-info: oklch(58% 0.12 240);
+
+      --font-display: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.4);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      padding: 2rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    .preview-title { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3.5rem); margin-bottom: 1.5rem; }
+    .subtitle { font-size: 0.875rem; color: var(--muted); margin-bottom: 2rem; }
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .swatch { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .swatch-visual { height: 80px; }
+    .swatch-info { padding: 0.5rem 1rem; background: var(--surface); }
+    .swatch-name { font-weight: 600; font-size: 0.875rem; color: var(--fg); }
+    .swatch-value { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+    .demo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .demo-card h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .demo-card p { color: var(--muted); font-size: 0.9375rem; max-width: 500px; }
+  </style>
+</head>
+<body>
+  <h1 class="preview-title">Dark Theme</h1>
+  <p class="subtitle">Alternative dark palette for evening/ambient UI surfaces (bar menus, night mode, stage displays)</p>
+
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch-visual" style="background: var(--bg);"></div><div class="swatch-info"><div class="swatch-name">--bg</div><div class="swatch-value">oklch(12% 0.01 250)</div></div></div>
+    <div class="swatch"><div class="swatch-visual" style="background: var(--surface); border-bottom: 1px solid var(--border);"></div><div class="swatch-info"><div class="swatch-name">--surface</div><div class="swatch-value">oklch(18% 0.015 250)</div></div></div>
+    <div class="swatch"><div class="swatch-visual" style="background: var(--surface-warm);"></div><div class="swatch-info"><div class="swatch-name">--surface-warm</div><div class="swatch-value">oklch(20% 0.02 40)</div></div></div>
+    <div class="swatch"><div class="swatch-visual" style="background: var(--fg);"></div><div class="swatch-info"><div class="swatch-name">--fg</div><div class="swatch-value">oklch(92% 0.005 60)</div></div></div>
+    <div class="swatch"><div class="swatch-visual" style="background: var(--border);"></div><div class="swatch-info"><div class="swatch-name">--border</div><div class="swatch-value">oklch(28% 0.015 250)</div></div></div>
+    <div class="swatch"><div class="swatch-visual" style="background: var(--accent-wine);"></div><div class="swatch-info"><div class="swatch-name">--accent-wine</div><div class="swatch-value">oklch(55% 0.18 28)</div></div></div>
+    <div class="swatch"><div class="swatch-visual" style="background: var(--accent-gold);"></div><div class="swatch-info"><div class="swatch-name">--accent-gold</div><div class="swatch-value">oklch(72% 0.14 70)</div></div></div>
+    <div class="swatch"><div class="swatch-visual" style="background: var(--accent-navy);"></div><div class="swatch-info"><div class="swatch-name">--accent-navy</div><div class="swatch-value">oklch(15% 0.02 260)</div></div></div>
+  </div>
+
+  <div class="demo-card">
+    <h3>Live Music Tonight</h3>
+    <p>Every night at The Bootlegger — jazz, piano, harp, and the legendary Santa Fe & The Fat City Horns every Monday in The Copa Room.</p>
+    <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+      <span style="display: inline-flex; align-items: center; padding: 2px 12px; border-radius: 9999px; background: var(--accent-gold); color: #111; font-size: 0.75rem; font-weight: 500;">NO COVER</span>
+      <span style="display: inline-flex; align-items: center; padding: 2px 12px; border-radius: 9999px; background: var(--accent-wine); color: #fff; font-size: 0.75rem; font-weight: 500;">6:30 PM</span>
+    </div>
+  </div>
+</body>
+</html>

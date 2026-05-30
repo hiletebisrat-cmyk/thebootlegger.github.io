@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootlegger — Button Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    /* ---- layout ---- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; }
+
+    .specimen-page { max-width: 1200px; margin: 0 auto; }
+
+    .sect { padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 4vw, 4rem); }
+    .sect-dark { background: var(--accent-navy); color: #fff; }
+    .sect-warm { background: var(--surface-warm); }
+    .sect-surface { background: var(--surface); }
+    .sect-red { background: var(--accent-red); color: #fff; }
+
+    /* ---- editorial headings ---- */
+    .specimen-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: var(--space-lg);
+      opacity: 0.6;
+    }
+    .specimen-label-white { opacity: 0.5; color: #fff; }
+
+    .display-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: var(--space-md);
+    }
+    .display-headline i {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent-red);
+    }
+    .display-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--text-h3);
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 48ch;
+      line-height: 1.5;
+    }
+    .display-subtitle-white { color: rgba(255,255,255,0.7); }
+
+    /* ---- section headings ---- */
+    .section-head {
+      font-family: var(--font-display);
+      font-size: var(--text-h2);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-lg);
+    }
+    .section-head-white { color: #fff; }
+
+    .section-desc {
+      font-family: var(--font-body);
+      font-size: var(--text-small);
+      color: var(--muted);
+      max-width: 48ch;
+      line-height: 1.6;
+      margin-bottom: var(--space-xl);
+    }
+    .section-desc-white { color: rgba(255,255,255,0.7); }
+
+    /* ---- button preview cards ---- */
+    .button-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-lg);
+    }
+    .button-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 2px solid var(--border);
+    }
+    .button-panel-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-body);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .button-panel-variant {
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ---- button rows ---- */
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+    .button-row-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      min-width: 72px;
+    }
+
+    /* ---- token specs ---- */
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border);
+    }
+    .token-item {
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+    }
+    .token-key {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .token-value {
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    /* ---- usage tags ---- */
+    .usage-tag {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      padding: 2px var(--space-sm);
+      border-radius: var(--radius-full);
+      background: color-mix(in oklch, var(--accent-wine) 10%, transparent);
+      color: var(--accent-wine);
+      font-weight: 500;
+      margin-right: var(--space-xs);
+      margin-bottom: var(--space-xs);
+    }
+    .usage-tag-gold {
+      background: color-mix(in oklch, var(--accent-gold) 15%, transparent);
+      color: oklch(45% 0.10 70);
+    }
+
+    /* ---- divider ---- */
+    .divider-gold {
+      width: 60px;
+      height: 3px;
+      background: var(--accent-gold);
+      border: 0;
+      margin: var(--space-xl) 0;
+    }
+
+    /* ---- state matrix ---- */
+    .matrix {
+      display: grid;
+      grid-template-columns: 140px 1fr 1fr 1fr 1fr 1fr;
+      gap: 0;
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .matrix-header {
+      background: var(--accent-navy);
+      color: #fff;
+      padding: var(--space-sm) var(--space-md);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.65rem;
+    }
+    .matrix-cell {
+      padding: var(--space-sm) var(--space-md);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+    .matrix-cell:last-child { border-right: none; }
+    .matrix-label {
+      font-weight: 600;
+      color: var(--fg);
+      font-size: 0.7rem;
+    }
+
+    /* ---- badge showcase ---- */
+    .badge-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* ---- nav showcase ---- */
+    .nav-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    /* ---- responsive tweaks ---- */
+    @media (max-width: 720px) {
+      .matrix { grid-template-columns: 100px 1fr; }
+      .matrix-header:nth-child(n+3) { display: none; }
+      .matrix-cell:nth-child(n+3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="specimen-page">
+
+    <!-- ============================================================ -->
+    <!-- HERO -->
+    <!-- ============================================================ -->
+    <section class="sect sect-warm">
+      <p class="specimen-label">Component Reference</p>
+      <h1 class="display-headline">
+        Button<br>
+        <i>Components</i>
+      </h1>
+      <hr class="divider-gold">
+      <p class="display-subtitle">
+        Five button variants for the Bootlegger brand — primary, secondary, gold,
+        ghost, and outline. Each built with <span style="font-family: var(--font-mono);">--text-button</span>
+        (0.9375rem / 500 weight / sans-serif) on <span style="font-family: var(--font-mono);">--radius-md</span>
+        (8px) with 0.75rem/1rem vertical/horizontal padding.
+      </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ANATOMY -->
+    <!-- ============================================================ -->
+    <section class="sect sect-surface">
+      <p class="specimen-label">Token Reference</p>
+      <h2 class="section-head">Button Anatomy</h2>
+
+      <div class="button-panel" style="display: flex; flex-wrap: wrap; gap: var(--space-xl); align-items: center;">
+        <div style="flex: 1; min-width: 240px;">
+          <p style="font-family: var(--font-body); font-size: var(--text-small); color: var(--muted); margin-bottom: var(--space-lg); line-height: 1.6;">
+            Every button variant shares a base class and then applies variant-specific
+            background, color, and border tokens. The base shape is always the same.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: var(--text-meta); line-height: 2;">
+            <div><span style="color: var(--muted);">font-family</span> var(--font-body) · DM Sans</div>
+            <div><span style="color: var(--muted);">font-size</span> var(--text-button) · 0.9375rem</div>
+            <div><span style="color: var(--muted);">font-weight</span> 500 · medium</div>
+            <div><span style="color: var(--muted);">padding</span> 0.75rem 1rem · var(--space-sm) var(--space-lg)</div>
+            <div><span style="color: var(--muted);">border-radius</span> var(--radius-md) · 8px</div>
+            <div><span style="color: var(--muted);">line-height</span> 1</div>
+            <div><span style="color: var(--muted);">transition</span> all 0.15s ease</div>
+            <div><span style="color: var(--muted);">active</span> transform: scale(0.97)</div>
+          </div>
+        </div>
+        <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); padding: var(--space-xl); border: 2px dashed var(--border); border-radius: var(--radius-md);">
+          <span style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted);">Base Shape</span>
+          <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-body); font-size: 0.9375rem; font-weight: 500; line-height: 1; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface);">
+            Base Button
+          </div>
+          <div style="display: grid; grid-template-columns: auto auto auto; gap: 4px; margin-top: var(--space-sm);">
+            <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); text-align: center;">padding: 0.75rem 1rem</span>
+            <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); text-align: center;">radius: 8px</span>
+            <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); text-align: center;">line-height: 1</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- PRIMARY -->
+    <!-- ============================================================ -->
+    <section class="sect sect-warm">
+      <p class="specimen-label">Variant 01</p>
+      <h2 class="section-head">Primary <span style="font-family: var(--font-mono); font-size: 1rem; font-weight: 400; color: var(--muted);">· btn-primary</span></h2>
+      <hr class="divider-gold">
+
+      <div class="button-panel">
+        <div class="button-panel-header">
+          <span class="button-panel-name">Default State</span>
+          <span class="button-panel-variant">use: primary CTAs</span>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Default</span>
+          <a href="#" class="btn btn-primary">Reserve a Table</a>
+          <a href="#" class="btn btn-primary">Order Takeout</a>
+          <a href="#" class="btn btn-primary">Book an Event</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Hover</span>
+          <a href="#" class="btn btn-primary" style="background: oklch(38% 0.18 28);">Reserve a Table</a>
+          <a href="#" class="btn btn-primary" style="background: oklch(38% 0.18 28);">Order Takeout</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Active</span>
+          <a href="#" class="btn btn-primary" style="background: oklch(38% 0.18 28); transform: scale(0.97);">Reserve a Table</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Disabled</span>
+          <a href="#" class="btn btn-primary" style="opacity: 0.4; cursor: not-allowed; pointer-events: none;">Reserve a Table</a>
+        </div>
+
+        <div class="token-grid">
+          <div class="token-item"><span class="token-key">Background</span><span class="token-value">var(--accent-wine)</span></div>
+          <div class="token-item"><span class="token-key">Hover</span><span class="token-value">oklch(38% 0.18 28)</span></div>
+          <div class="token-item"><span class="token-key">Text</span><span class="token-value">#fff</span></div>
+          <div class="token-item"><span class="token-key">Border</span><span class="token-value">transparent</span></div>
+          <div class="token-item"><span class="token-key">Token</span><span class="token-value">--accent-wine</span></div>
+        </div>
+
+        <div style="margin-top: var(--space-md);">
+          <span class="usage-tag">Reserve a Table</span>
+          <span class="usage-tag">Order Takeout</span>
+          <span class="usage-tag">Book an Event</span>
+          <span class="usage-tag">Inquire</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECONDARY -->
+    <!-- ============================================================ -->
+    <section class="sect sect-surface">
+      <p class="specimen-label">Variant 02</p>
+      <h2 class="section-head">Secondary <span style="font-family: var(--font-mono); font-size: 1rem; font-weight: 400; color: var(--muted);">· btn-secondary</span></h2>
+      <hr class="divider-gold">
+
+      <div class="button-panel">
+        <div class="button-panel-header">
+          <span class="button-panel-name">Default State</span>
+          <span class="button-panel-variant">use: secondary actions</span>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Default</span>
+          <a href="#" class="btn btn-secondary">View Menu</a>
+          <a href="#" class="btn btn-secondary">See Events</a>
+          <a href="#" class="btn btn-secondary">Learn More</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Hover</span>
+          <a href="#" class="btn btn-secondary" style="background: var(--accent-wine); color: #fff; text-decoration: none;">View Menu</a>
+          <a href="#" class="btn btn-secondary" style="background: var(--accent-wine); color: #fff; text-decoration: none;">See Events</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Active</span>
+          <a href="#" class="btn btn-secondary" style="background: var(--accent-wine); color: #fff; transform: scale(0.97);">View Menu</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Disabled</span>
+          <a href="#" class="btn btn-secondary" style="opacity: 0.4; cursor: not-allowed; pointer-events: none;">View Menu</a>
+        </div>
+
+        <div class="token-grid">
+          <div class="token-item"><span class="token-key">Background</span><span class="token-value">transparent</span></div>
+          <div class="token-item"><span class="token-key">Border</span><span class="token-value">var(--accent-wine)</span></div>
+          <div class="token-item"><span class="token-key">Text</span><span class="token-value">var(--accent-wine)</span></div>
+          <div class="token-item"><span class="token-key">Hover bg</span><span class="token-value">var(--accent-wine)</span></div>
+          <div class="token-item"><span class="token-key">Hover text</span><span class="token-value">#fff</span></div>
+        </div>
+
+        <div style="margin-top: var(--space-md);">
+          <span class="usage-tag">View Menu</span>
+          <span class="usage-tag">See Events</span>
+          <span class="usage-tag">Learn More</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- GOLD -->
+    <!-- ============================================================ -->
+    <section class="sect sect-warm">
+      <p class="specimen-label">Variant 03</p>
+      <h2 class="section-head">Gold <span style="font-family: var(--font-mono); font-size: 1rem; font-weight: 400; color: var(--muted);">· btn-gold</span></h2>
+      <hr class="divider-gold">
+
+      <div class="button-panel">
+        <div class="button-panel-header">
+          <span class="button-panel-name">Default State</span>
+          <span class="button-panel-variant">use: entertainment / special moments</span>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Default</span>
+          <a href="#" class="btn btn-gold">Live Music Tonight</a>
+          <a href="#" class="btn btn-gold">Gift Cards</a>
+          <a href="#" class="btn btn-gold">Special Events</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Hover</span>
+          <a href="#" class="btn btn-gold" style="background: oklch(62% 0.14 70); text-decoration: none;">Live Music Tonight</a>
+          <a href="#" class="btn btn-gold" style="background: oklch(62% 0.14 70); text-decoration: none;">Gift Cards</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Active</span>
+          <a href="#" class="btn btn-gold" style="background: oklch(62% 0.14 70); transform: scale(0.97);">Live Music Tonight</a>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Disabled</span>
+          <a href="#" class="btn btn-gold" style="opacity: 0.4; cursor: not-allowed; pointer-events: none;">Live Music Tonight</a>
+        </div>
+
+        <div class="token-grid">
+          <div class="token-item"><span class="token-key">Background</span><span class="token-value">var(--accent-gold)</span></div>
+          <div class="token-item"><span class="token-key">Text</span><span class="token-value">var(--fg)</span></div>
+          <div class="token-item"><span class="token-key">Hover</span><span class="token-value">oklch(62% 0.14 70)</span></div>
+          <div class="token-item"><span class="token-key">Token</span><span class="token-value">--accent-gold</span></div>
+          <div class="token-item"><span class="token-key">Tone</span><span class="token-value">warm amber</span></div>
+        </div>
+
+        <div style="margin-top: var(--space-md);">
+          <span class="usage-tag usage-tag-gold">Live Music Tonight</span>
+          <span class="usage-tag usage-tag-gold">Gift Cards</span>
+          <span class="usage-tag usage-tag-gold">Special Events</span>
+          <span class="usage-tag usage-tag-gold">Book Event</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- GHOST / OUTLINE -->
+    <!-- ============================================================ -->
+    <section class="sect sect-surface" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl);">
+      <div>
+        <p class="specimen-label">Variant 04</p>
+        <h2 class="section-head" style="font-size: var(--text-h3);">Ghost <span style="font-family: var(--font-mono); font-size: 0.875rem; font-weight: 400; color: var(--muted);">· btn-ghost</span></h2>
+
+        <div class="button-panel">
+          <div class="button-row">
+            <span class="button-row-label">Default</span>
+            <a href="#" class="btn btn-ghost">Learn Our Story</a>
+            <a href="#" class="btn btn-ghost">FAQs</a>
+          </div>
+          <div class="button-row">
+            <span class="button-row-label">Hover</span>
+            <a href="#" class="btn btn-ghost" style="background: color-mix(in oklch, var(--border) 50%, transparent); color: var(--fg); text-decoration: none;">Learn Our Story</a>
+          </div>
+          <div class="token-grid" style="margin-top: var(--space-md);">
+            <div class="token-item"><span class="token-key">Background</span><span class="token-value">transparent</span></div>
+            <div class="token-item"><span class="token-key">Text</span><span class="token-value">var(--muted)</span></div>
+            <div class="token-item"><span class="token-key">Border</span><span class="token-value">none</span></div>
+            <div class="token-item"><span class="token-key">Hover bg</span><span class="token-value">border + 50% mix</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="specimen-label">Variant 05</p>
+        <h2 class="section-head" style="font-size: var(--text-h3);">Outline <span style="font-family: var(--font-mono); font-size: 0.875rem; font-weight: 400; color: var(--muted);">· btn-outline</span></h2>
+
+        <div class="button-panel">
+          <div class="button-row">
+            <span class="button-row-label">Default</span>
+            <a href="#" class="btn btn-outline">Shop Merch</a>
+            <a href="#" class="btn btn-outline">Gift Cards</a>
+          </div>
+          <div class="button-row">
+            <span class="button-row-label">Hover</span>
+            <a href="#" class="btn btn-outline" style="border-color: var(--fg); text-decoration: none;">Shop Merch</a>
+          </div>
+          <div class="token-grid" style="margin-top: var(--space-md);">
+            <div class="token-item"><span class="token-key">Background</span><span class="token-value">transparent</span></div>
+            <div class="token-item"><span class="token-key">Text</span><span class="token-value">var(--fg)</span></div>
+            <div class="token-item"><span class="token-key">Border</span><span class="token-value">var(--border)</span></div>
+            <div class="token-item"><span class="token-key">Hover border</span><span class="token-value">var(--fg)</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SIZE VARIANTS -->
+    <!-- ============================================================ -->
+    <section class="sect sect-warm">
+      <p class="specimen-label">Scale</p>
+      <h2 class="section-head">Button Sizes</h2>
+      <hr class="divider-gold">
+
+      <div class="button-panel">
+        <div class="button-row">
+          <span class="button-row-label">Small</span>
+          <a href="#" class="btn btn-primary" style="font-size: 0.8125rem; padding: 0.5rem 0.75rem; border-radius: 6px;">Small CTA</a>
+          <span style="font-family: var(--font-mono); font-size: var(--text-meta); color: var(--muted);">0.8125rem / 0.5rem 0.75rem / 6px</span>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Default</span>
+          <a href="#" class="btn btn-primary">Default CTA</a>
+          <span style="font-family: var(--font-mono); font-size: var(--text-meta); color: var(--muted);">0.9375rem / 0.75rem 1rem / 8px</span>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Large</span>
+          <a href="#" class="btn btn-primary" style="font-size: 1.125rem; padding: 1rem 1.5rem; border-radius: 10px;">Large CTA</a>
+          <span style="font-family: var(--font-mono); font-size: var(--text-meta); color: var(--muted);">1.125rem / 1rem 1.5rem / 10px</span>
+        </div>
+        <div class="button-row">
+          <span class="button-row-label">Full Width</span>
+          <a href="#" class="btn btn-primary" style="width: 100%; max-width: 400px;">Full Width CTA</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BADGES -->
+    <!-- ============================================================ -->
+    <section class="sect sect-surface">
+      <p class="specimen-label">Related</p>
+      <h2 class="section-head">Badges</h2>
+      <hr class="divider-gold">
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl);">
+        <div class="button-panel">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: var(--space-md);">Badge Variants</p>
+          <div class="badge-showcase">
+            <span class="badge badge-wine">Wine Selection</span>
+            <span class="badge badge-red">New Item</span>
+            <span class="badge badge-gold">Live Music</span>
+            <span class="badge badge-success">Available</span>
+            <span class="badge badge-warning">Waitlist</span>
+          </div>
+          <div class="token-grid">
+            <div class="token-item"><span class="token-key">Padding</span><span class="token-value">2px var(--space-sm)</span></div>
+            <div class="token-item"><span class="token-key">Radius</span><span class="token-value">var(--radius-full)</span></div>
+            <div class="token-item"><span class="token-key">Font</span><span class="token-value">var(--text-meta) / 500</span></div>
+          </div>
+        </div>
+
+        <div class="button-panel">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: var(--space-md);">Nav Links</p>
+          <div class="nav-showcase">
+            <a href="#" class="nav-link">Menu</a>
+            <a href="#" class="nav-link active">Our Story</a>
+            <a href="#" class="nav-link">Entertainment</a>
+            <a href="#" class="nav-link">Awards</a>
+            <a href="#" class="nav-link">Events</a>
+            <a href="#" class="nav-link">Shop</a>
+          </div>
+          <div class="token-grid">
+            <div class="token-item"><span class="token-key">Font</span><span class="token-value">var(--text-small) / 500</span></div>
+            <div class="token-item"><span class="token-key">Active</span><span class="token-value">gold underline</span></div>
+            <div class="token-item"><span class="token-key">Hover</span><span class="token-value">scale underline</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- INPUT + BUTTON FORM CONTEXT -->
+    <!-- ============================================================ -->
+    <section class="sect sect-warm">
+      <p class="specimen-label">In Context</p>
+      <h2 class="section-head">Form + Button <i style="font-weight: 400; font-style: italic; color: var(--accent-red);">Composition</i></h2>
+      <hr class="divider-gold">
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl);">
+        <div class="button-panel">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: var(--space-md);">Reservation Form</p>
+          <input class="input" type="text" placeholder="Your name" style="margin-bottom: var(--space-sm);">
+          <input class="input" type="email" placeholder="Email address" style="margin-bottom: var(--space-sm);">
+          <input class="input" type="date" style="margin-bottom: var(--space-md);">
+          <a href="#" class="btn btn-primary" style="width: 100%;">Reserve a Table</a>
+        </div>
+
+        <div class="button-panel">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: var(--space-md);">Event Booking</p>
+          <p style="font-family: var(--font-body); font-size: var(--text-body); margin-bottom: var(--space-md); line-height: 1.5;">
+            <strong>The Copa Room</strong> accommodates 50–180 guests.
+            Live music and entertainment venue.
+          </p>
+          <div style="display: flex; gap: var(--space-sm);">
+            <a href="#" class="btn btn-gold">Book Event</a>
+            <a href="#" class="btn btn-secondary">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- QUICK REFERENCE (dark footer) -->
+    <!-- ============================================================ -->
+    <section class="sect sect-dark">
+      <p class="specimen-label specimen-label-white">Quick Reference</p>
+      <h2 class="section-head section-head-white">All Variants</h2>
+      <hr class="divider-gold">
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl);">
+        <div style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: var(--space-lg);">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-gold); margin-bottom: var(--space-sm);">Primary</p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: var(--space-sm);">
+            var(--accent-wine) · #fff<br>
+            <span style="color: rgba(255,255,255,0.3);">Wine background. Primary CTAs.</span>
+          </p>
+          <a href="#" class="btn btn-primary" style="font-size: 0.8125rem;">Reserve a Table</a>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: var(--space-lg);">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-gold); margin-bottom: var(--space-sm);">Secondary</p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: var(--space-sm);">
+            transparent · var(--accent-wine) border<br>
+            <span style="color: rgba(255,255,255,0.3);">Outline with wine. Secondary actions.</span>
+          </p>
+          <a href="#" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); font-size: 0.8125rem;">View Menu</a>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: var(--space-lg);">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-gold); margin-bottom: var(--space-sm);">Gold</p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: var(--space-sm);">
+            var(--accent-gold) · var(--fg)<br>
+            <span style="color: rgba(255,255,255,0.3);">Amber gold. Entertainment/special.</span>
+          </p>
+          <a href="#" class="btn btn-gold" style="font-size: 0.8125rem;">Live Music</a>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: var(--space-lg);">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-gold); margin-bottom: var(--space-sm);">Ghost</p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: var(--space-sm);">
+            transparent · var(--muted)<br>
+            <span style="color: rgba(255,255,255,0.3);">No border. Subtle tertiary.</span>
+          </p>
+          <a href="#" class="btn btn-ghost" style="color: rgba(255,255,255,0.6); font-size: 0.8125rem;">Learn Story</a>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: var(--space-lg);">
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-gold); margin-bottom: var(--space-sm);">Outline</p>
+          <p style="font-family: var(--font-body); font-size: 0.8125rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: var(--space-sm);">
+            transparent · var(--border)<br>
+            <span style="color: rgba(255,255,255,0.3);">Muted border. Lightweight.</span>
+          </p>
+          <a href="#" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); font-size: 0.8125rem;">Shop Merch</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

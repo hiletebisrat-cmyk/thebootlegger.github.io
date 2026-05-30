@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootlegger — Spacing Tokens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    body { padding: var(--space-2xl); background: var(--bg); max-width: 900px; }
+    .preview-title { font-family: var(--font-display); font-size: var(--text-h1); margin-bottom: var(--space-xl); }
+    .section-title { font-family: var(--font-display); font-size: var(--text-h2); margin-bottom: var(--space-lg); margin-top: var(--space-3xl); }
+    .token-row { display: flex; align-items: center; gap: var(--space-lg); margin-bottom: var(--space-md); }
+    .token-box { height: 32px; background: var(--accent-wine); border-radius: var(--radius-sm); flex-shrink: 0; }
+    .token-label { font-family: var(--font-mono); font-size: var(--text-small); min-width: 200px; }
+    .token-value { font-family: var(--font-mono); font-size: var(--text-meta); color: var(--muted); }
+
+    .radius-grid { display: flex; gap: var(--space-lg); flex-wrap: wrap; }
+    .radius-demo { width: 80px; height: 80px; background: var(--accent-wine); display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--font-mono); font-size: var(--text-meta); }
+
+    .shadow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-lg); }
+    .shadow-demo { background: var(--surface); border-radius: var(--radius-md); padding: var(--space-xl); text-align: center; font-family: var(--font-mono); font-size: var(--text-small); }
+  </style>
+</head>
+<body>
+  <h1 class="preview-title">Spacing &amp; Rhythm</h1>
+
+  <h2 class="section-title">Spacing Scale</h2>
+  <div class="token-row"><div class="token-box" style="width: var(--space-2xs);"></div><div class="token-label">--space-2xs</div><div class="token-value">0.25rem · 4px</div></div>
+  <div class="token-row"><div class="token-box" style="width: var(--space-xs);"></div><div class="token-label">--space-xs</div><div class="token-value">0.5rem · 8px</div></div>
+  <div class="token-row"><div class="token-box" style="width: var(--space-sm);"></div><div class="token-label">--space-sm</div><div class="token-value">0.75rem · 12px</div></div>
+  <div class="token-row"><div class="token-box" style="width: var(--space-md);"></div><div class="token-label">--space-md</div><div class="token-value">1rem · 16px</div></div>
+  <div class="token-row"><div class="token-box" style="width: var(--space-lg);"></div><div class="token-label">--space-lg</div><div class="token-value">1.5rem · 24px</div></div>
+  <div class="token-row"><div class="token-box" style="width: var(--space-xl);"></div><div class="token-label">--space-xl</div><div class="token-value">2rem · 32px</div></div>
+  <div class="token-row"><div class="token-box" style="width: var(--space-2xl);"></div><div class="token-label">--space-2xl</div><div class="token-value">3rem · 48px</div></div>
+  <div class="token-row"><div class="token-box" style="width: var(--space-3xl);"></div><div class="token-label">--space-3xl</div><div class="token-value">4rem · 64px</div></div>
+
+  <h2 class="section-title">Border Radius</h2>
+  <div class="radius-grid">
+    <div class="radius-demo" style="border-radius: var(--radius-sm);">4px</div>
+    <div class="radius-demo" style="border-radius: var(--radius-md);">8px</div>
+    <div class="radius-demo" style="border-radius: var(--radius-lg);">12px</div>
+    <div class="radius-demo" style="border-radius: var(--radius-xl);">16px</div>
+    <div class="radius-demo" style="border-radius: var(--radius-full); width: 80px;">full</div>
+  </div>
+
+  <h2 class="section-title">Shadows</h2>
+  <div class="shadow-grid">
+    <div class="shadow-demo" style="box-shadow: var(--shadow-sm);">--shadow-sm</div>
+    <div class="shadow-demo" style="box-shadow: var(--shadow-md);">--shadow-md</div>
+    <div class="shadow-demo" style="box-shadow: var(--shadow-lg);">--shadow-lg</div>
+    <div class="shadow-demo" style="box-shadow: var(--shadow-warm);">--shadow-warm</div>
+  </div>
+</body>
+</html>

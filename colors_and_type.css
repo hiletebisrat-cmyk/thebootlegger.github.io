@@ -1,0 +1,285 @@
+/* =============================================================
+   The Bootlegger Italian Bistro — Design Tokens & Typography
+   Bind this file in every <head> before generating UI.
+   @font-face and @import are at the top so previews load fonts.
+   ============================================================= */
+
+/* ---- Custom Properties (Light / Default) ------------------ */
+/* NOTE: Google Fonts <link> tags for Cormorant Garamond + DM Sans
+    must be added in <head> of each preview/HTML file separately.
+    Do not add @import here — it blocks parsing of CSS after it. */
+:root {
+  /* ----- Brand Palette (OKLch) ----- */
+  --bg:            oklch(97.5% 0.012 60);
+  --surface:       oklch(100% 0 0);
+  --surface-warm:  oklch(96% 0.015 55);
+  --fg:            oklch(15% 0.025 30);
+  --muted:         oklch(55% 0.03 40);
+  --border:        oklch(88% 0.02 50);
+  --accent-wine:   oklch(42% 0.18 28);
+  --accent-red:    oklch(52% 0.20 28);
+  --accent-gold:   oklch(68% 0.14 70);
+  --accent-olive:  oklch(45% 0.10 120);
+  --accent-navy:   oklch(38% 0.10 250);
+
+  /* ----- State Colors ----- */
+  --state-success: oklch(55% 0.14 145);
+  --state-warning: oklch(65% 0.14 85);
+  --state-error:   oklch(50% 0.18 28);
+  --state-info:    oklch(55% 0.12 240);
+
+  /* ----- Typography ----- */
+  --font-display: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  /* ----- Tracking ----- */
+  --tracking-display: 0.03em;
+  --tracking-wide:   0.08em;
+
+  /* ----- Type Scale ----- */
+  --text-hero:    clamp(3rem, 5vw, 5rem);
+  --text-h1:      clamp(2rem, 3.5vw, 3.5rem);
+  --text-h2:      clamp(1.5rem, 2.5vw, 2.5rem);
+  --text-h3:      clamp(1.25rem, 1.8vw, 1.75rem);
+  --text-body:    clamp(1rem, 1.1vw, 1.125rem);
+  --text-small:   clamp(0.875rem, 0.9vw, 0.9375rem);
+  --text-meta:    0.75rem;
+  --text-button:  0.9375rem;
+
+  /* ----- Spacing ----- */
+  --space-2xs:  0.25rem;
+  --space-xs:   0.5rem;
+  --space-sm:   0.75rem;
+  --space-md:   1rem;
+  --space-lg:   1.5rem;
+  --space-xl:   2rem;
+  --space-2xl:  3rem;
+  --space-3xl:  4rem;
+
+  /* ----- Border Radius ----- */
+  --radius-sm:   0;
+  --radius-md:   0;
+  --radius-lg:   0;
+  --radius-xl:   0;
+  --radius-full: 0;
+
+  /* ----- Gradients ----- */
+  --gradient-dark:          linear-gradient(180deg, oklch(12% 0.005 255) 0%, oklch(8% 0.005 260) 100%);
+  --gradient-dark-banner:   linear-gradient(180deg, oklch(12% 0.005 255) 0%, oklch(8% 0.005 260) 50%, oklch(5% 0.003 260) 100%);
+  --gradient-dark-diag:     linear-gradient(135deg, oklch(12% 0.005 255), oklch(8% 0.005 260));
+  --gradient-family:        linear-gradient(160deg, oklch(42% 0.18 28) 0%, oklch(12% 0.008 255) 50%, oklch(8% 0.006 260) 100%);
+  --gradient-hero-0:        linear-gradient(160deg, oklch(48% 0.18 30) 0%, oklch(40% 0.14 260) 50%, oklch(32% 0.10 250) 100%);
+  --gradient-hero-1:        linear-gradient(160deg, oklch(32% 0.10 250) 0%, oklch(48% 0.18 30) 50%, oklch(40% 0.12 40) 100%);
+  --gradient-hero-2:        linear-gradient(160deg, oklch(58% 0.15 70) 0%, oklch(42% 0.18 28) 50%, oklch(34% 0.10 250) 100%);
+
+  /* ----- Shadows ----- */
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:   0 4px 6px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg:   0 10px 25px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-warm: 0 2px 8px rgba(110, 50, 30, 0.1);
+}
+
+/* ---- Reset & Base ----------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, video { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent-wine); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---- Typography Utilities --------------------------------- */
+.font-display { font-family: var(--font-display); }
+.font-body    { font-family: var(--font-body); }
+.font-mono    { font-family: var(--font-mono); }
+
+/* ---- Components ------------------------------------------- */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-button);
+  font-weight: 400;
+  line-height: 1;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  background: var(--accent-wine);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: oklch(38% 0.18 28);
+  color: #fff;
+  text-decoration: none;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-wine);
+  border-color: var(--accent-wine);
+}
+.btn-secondary:hover {
+  background: var(--accent-wine);
+  color: #fff;
+  text-decoration: none;
+}
+.btn-gold {
+  background: var(--accent-gold);
+  color: var(--fg);
+}
+.btn-gold:hover {
+  background: oklch(62% 0.14 70);
+  text-decoration: none;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+}
+.btn-ghost:hover {
+  background: color-mix(in oklch, var(--border) 50%, transparent);
+  color: var(--fg);
+  text-decoration: none;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--border);
+}
+.btn-outline:hover {
+  border-color: var(--fg);
+  text-decoration: none;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--text-meta);
+  font-weight: 400;
+  line-height: 1.4;
+}
+.badge-wine { background: var(--accent-wine); color: #fff; }
+.badge-red  { background: var(--accent-red); color: #fff; }
+.badge-gold { background: var(--accent-gold); color: var(--fg); }
+.badge-success { background: var(--state-success); color: #fff; }
+.badge-warning { background: var(--state-warning); color: var(--fg); }
+
+/* Inputs */
+.input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--fg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--accent-wine);
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--accent-wine) 15%, transparent);
+}
+.input::placeholder { color: var(--muted); }
+
+/* Nav */
+.nav-link {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 400;
+  color: var(--muted);
+  padding: var(--space-xs) 0;
+  position: relative;
+  transition: color 0.15s ease;
+  text-decoration: none;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gold);
+  transition: width 0.2s ease, left 0.2s ease;
+}
+.nav-link:hover {
+  color: var(--fg);
+  text-decoration: none;
+}
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+.nav-link.active {
+  color: var(--fg);
+}
+.nav-link.active::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ---- Layout Helpers --------------------------------------- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-lg);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* ---- Reduced Motion --------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

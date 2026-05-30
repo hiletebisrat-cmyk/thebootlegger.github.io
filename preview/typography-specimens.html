@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootlegger — Typography Specimens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    /* ---- layout ---- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; }
+
+    .specimen-page { max-width: 1200px; margin: 0 auto; }
+
+    /* ---- section containers ---- */
+    .sect { padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 4vw, 4rem); }
+    .sect-dark { background: var(--accent-navy); color: #fff; }
+    .sect-warm { background: var(--surface-warm); }
+    .sect-surface { background: var(--surface); }
+
+    /* ---- hero ---- */
+    .hero-overline {
+      font-family: var(--font-body);
+      font-size: clamp(0.75rem, 0.9vw, 0.875rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--accent-gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero-wordmark {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.9;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      color: var(--accent-wine);
+      margin-top: 0.5rem;
+    }
+    .hero-meta {
+      font-family: var(--font-body);
+      font-size: var(--text-small);
+      color: var(--muted);
+      margin-top: 1.5rem;
+      max-width: 45ch;
+    }
+    .hero-meta em { font-style: normal; color: var(--accent-gold); }
+    .hero-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--accent-gold);
+      margin-top: 1.5rem;
+      border: 0;
+    }
+
+    /* ---- dark section styles ---- */
+    .sect-dark .hero-wordmark { color: #fff; }
+    .sect-dark .hero-sub { color: var(--accent-gold); }
+    .sect-dark .hero-meta { color: rgba(255,255,255,0.6); }
+    .sect-dark .hero-meta em { color: var(--accent-gold); }
+
+    /* ---- weight ladder ---- */
+    .weight-ladder { display: flex; flex-direction: column; gap: 0.5rem; }
+    .weight-row { display: flex; align-items: baseline; gap: 1rem; }
+    .weight-label {
+      font-family: var(--font-body);
+      font-size: var(--text-meta);
+      color: var(--muted);
+      min-width: 5ch;
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .weight-sample {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      line-height: 1.1;
+    }
+    .weight-sample-mono {
+      font-family: var(--font-mono);
+      font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+    }
+    .sect-dark .weight-label { color: rgba(255,255,255,0.5); }
+
+    /* ---- body specimen ---- */
+    .body-specimen {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 720px) { .body-specimen { grid-template-columns: 1fr; } }
+    .body-col h3 {
+      font-family: var(--font-body);
+      font-size: var(--text-meta);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-wine);
+      margin-bottom: 1rem;
+    }
+    .body-col p {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      line-height: 1.7;
+      max-width: 65ch;
+    }
+    .body-col p + p { margin-top: 1.5rem; }
+    .body-col .dropcap::first-letter {
+      font-family: var(--font-display);
+      font-size: 4em;
+      font-weight: 700;
+      line-height: 0.8;
+      float: left;
+      margin: 0.1em 0.15em 0 0;
+      color: var(--accent-wine);
+    }
+    .body-col .small-caps {
+      font-variant: small-caps;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---- pull quote ---- */
+    .pull-quote {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-style: italic;
+      font-size: clamp(1.75rem, 3vw, 2.75rem);
+      line-height: 1.25;
+      max-width: 12ch;
+      color: var(--accent-wine);
+      position: relative;
+      padding: 2rem 0 2rem 2rem;
+      border-left: 4px solid var(--accent-gold);
+    }
+    .pull-quote-attribution {
+      font-family: var(--font-body);
+      font-size: var(--text-small);
+      font-style: normal;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+    .sect-dark .pull-quote { color: var(--accent-gold); border-left-color: var(--accent-gold); }
+    .sect-dark .pull-quote-attribution { color: rgba(255,255,255,0.5); }
+
+    /* ---- stat cluster ---- */
+    .stat-cluster {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    @media (max-width: 600px) { .stat-cluster { grid-template-columns: 1fr; } }
+    .stat-number {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      color: var(--accent-gold);
+    }
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: var(--text-small);
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+    }
+
+    /* ---- letterform grid ---- */
+    .letter-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    @media (max-width: 600px) { .letter-grid { grid-template-columns: repeat(4, 1fr); } }
+    .letter-cell {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      color: var(--fg);
+    }
+    .sect-dark .letter-cell { color: #fff; }
+
+    /* ---- tracking demo ---- */
+    .tracking-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .tracking-row {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: var(--text-h3);
+    }
+    .tracking-row .track-label {
+      display: inline-block;
+      width: 8ch;
+      font-size: var(--text-meta);
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .sect-dark .tracking-row .track-label { color: rgba(255,255,255,0.5); }
+
+    /* ---- menu specimen ---- */
+    .menu-specimen {
+      max-width: 520px;
+    }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-item:last-child { border-bottom: 0; }
+    .menu-item-name {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+      color: var(--fg);
+    }
+    .menu-item-price {
+      font-family: var(--font-mono);
+      font-size: var(--text-body);
+      font-variant-numeric: tabular-nums;
+      color: var(--accent-wine);
+      font-weight: 500;
+    }
+    .menu-item-desc {
+      font-family: var(--font-body);
+      font-size: var(--text-small);
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+    .sect-dark .menu-item-name { color: #fff; }
+    .sect-dark .menu-item { border-color: rgba(255,255,255,0.1); }
+    .sect-dark .menu-item-desc { color: rgba(255,255,255,0.5); }
+
+    /* ---- section title ---- */
+    .section-title {
+      font-family: var(--font-body);
+      font-size: var(--text-meta);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--accent-wine);
+      margin-bottom: 2rem;
+    }
+    .sect-dark .section-title { color: rgba(255,255,255,0.4); }
+
+    /* ---- font stack card ---- */
+    .stack-card {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    .stack-card-label {
+      font-family: var(--font-body);
+      font-size: var(--text-meta);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .stack-card-sample {
+      font-size: var(--text-h3);
+      font-weight: 600;
+    }
+
+    /* ---- glyph grid ---- */
+    .glyph-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+      gap: 0.5rem;
+    }
+    .glyph-cell {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+      line-height: 1;
+      text-align: center;
+      padding: 0.5rem;
+      color: var(--fg);
+      border-radius: var(--radius-sm);
+    }
+    .glyph-cell:hover { background: var(--surface-warm); }
+    .sect-dark .glyph-cell { color: #fff; }
+    .sect-dark .glyph-cell:hover { background: rgba(255,255,255,0.06); }
+
+    /* ---- responsive tweaks ---- */
+    @media (max-width: 600px) {
+      .sect { padding: 2rem 1.25rem; }
+      .body-specimen { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="specimen-page">
+
+  <!-- ── HERO ── -->
+  <section class="sect">
+    <p class="hero-overline">Cormorant Garamond · DM Sans · JetBrains Mono</p>
+    <h1 class="hero-wordmark">The Bootlegger<br>Italian Bistro</h1>
+    <p class="hero-sub">Where the Rat Pack broke bread and the bourbon never stopped</p>
+    <hr class="hero-divider">
+    <p class="hero-meta">Display face &mdash; <em>Cormorant Garamond 500</em> &middot; Italic subtitle &mdash; <em>Cormorant Garamond 400i</em></p>
+  </section>
+
+  <!-- ── WEIGHT LADDER — PLAYFAIR ── -->
+  <section class="sect sect-warm">
+    <p class="section-title">Weight Ladder — Cormorant Garamond</p>
+    <div class="weight-ladder">
+      <div class="weight-row"><span class="weight-label">400</span><span class="weight-sample" style="font-weight:400;">Continuing a Family Tradition Since 1949</span></div>
+      <div class="weight-row"><span class="weight-label">600</span><span class="weight-sample" style="font-weight:600;">Continuing a Family Tradition Since 1949</span></div>
+      <div class="weight-row"><span class="weight-label">700</span><span class="weight-sample" style="font-weight:700;">Continuing a Family Tradition Since 1949</span></div>
+      <div class="weight-row"><span class="weight-label">800</span><span class="weight-sample" style="font-weight:800;">Continuing a Family Tradition Since 1949</span></div>
+    </div>
+  </section>
+
+  <!-- ── LETTERFORMS ── -->
+  <section class="sect sect-dark">
+    <p class="section-title">Letterforms — Cormorant Garamond</p>
+    <div class="letter-grid">
+      <div class="letter-cell">A</div>
+      <div class="letter-cell">B</div>
+      <div class="letter-cell">C</div>
+      <div class="letter-cell">D</div>
+      <div class="letter-cell">E</div>
+      <div class="letter-cell">F</div>
+      <div class="letter-cell">G</div>
+      <div class="letter-cell">H</div>
+      <div class="letter-cell">I</div>
+      <div class="letter-cell">J</div>
+      <div class="letter-cell">K</div>
+      <div class="letter-cell">L</div>
+      <div class="letter-cell">M</div>
+      <div class="letter-cell">N</div>
+      <div class="letter-cell">O</div>
+      <div class="letter-cell">P</div>
+      <div class="letter-cell">Q</div>
+      <div class="letter-cell">R</div>
+      <div class="letter-cell">S</div>
+      <div class="letter-cell">T</div>
+      <div class="letter-cell">U</div>
+      <div class="letter-cell">V</div>
+      <div class="letter-cell">W</div>
+      <div class="letter-cell">X</div>
+      <div class="letter-cell">Y</div>
+      <div class="letter-cell">Z</div>
+      <div class="letter-cell">&amp;</div>
+      <div class="letter-cell">Q</div>
+    </div>
+  </section>
+
+  <!-- ── PULL QUOTE + STATS ── -->
+  <section class="sect sect-dark" style="padding-bottom:0;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+      <div>
+        <p class="section-title" style="margin-bottom:0.75rem;">In Use — Editorial</p>
+        <blockquote class="pull-quote">
+          &ldquo;The Place Where Locals &amp;<br>Celebrities Gather&rdquo;
+          <div class="pull-quote-attribution">— The Bootlegger Bistro, est. 1949</div>
+        </blockquote>
+      </div>
+      <div class="stat-cluster">
+        <div><div class="stat-number">1949</div><div class="stat-label">Founded</div></div>
+        <div><div class="stat-number">4</div><div class="stat-label">Generations</div></div>
+        <div><div class="stat-number">73+</div><div class="stat-label">Years Serving</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BODY TEXT ── -->
+  <section class="sect">
+    <p class="section-title">Body — DM Sans 300 / 400 / 500</p>
+    <div class="body-specimen">
+      <div class="body-col">
+        <h3>Light 300 · 1.125rem / 1.7</h3>
+        <p class="dropcap">Four generations of the Mancuso family have poured their hearts into The Bootlegger Bistro. What began as a&nbsp;prohibition-era backroom on the outskirts of Las Vegas has grown into a South Strip landmark where locals and legends alike pull up a chair.</p>
+        <p>Frank Sinatra held court in the corner booth. Anthony Bourdain filmed here. The red sauce recipe hasn't changed since Mama Maria first wrote it down — and nobody&rsquo;s asked her to.</p>
+      </div>
+      <div class="body-col">
+        <h3>Weight &amp; Leading Contrast</h3>
+        <p style="font-weight:400;">This is DM Sans at weight 400 — slightly more presence for emphasized prose, subheads, and navigation labels. Notice how the line height opens the colour of the paragraph.</p>
+        <p style="font-weight:500;">DM Sans 500 tightens up for button labels, table headers, and active states. <span class="small-caps">Small caps</span> are available via <code>font-variant: small-caps</code> for kickers and abbreviations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WEIGHT LADDER — INTER ── -->
+  <section class="sect sect-warm">
+    <p class="section-title">Weight Ladder — DM Sans</p>
+    <div class="weight-ladder">
+      <div class="weight-row"><span class="weight-label">300</span><span class="weight-sample" style="font-family:var(--font-body);font-weight:300;font-size:var(--text-h3);">Old School Italian Restaurant Las Vegas</span></div>
+      <div class="weight-row"><span class="weight-label">400</span><span class="weight-sample" style="font-family:var(--font-body);font-weight:400;font-size:var(--text-h3);">Old School Italian Restaurant Las Vegas</span></div>
+      <div class="weight-row"><span class="weight-label">500</span><span class="weight-sample" style="font-family:var(--font-body);font-weight:500;font-size:var(--text-h3);">Old School Italian Restaurant Las Vegas</span></div>
+      <div class="weight-row"><span class="weight-label">600</span><span class="weight-sample" style="font-family:var(--font-body);font-weight:600;font-size:var(--text-h3);">Old School Italian Restaurant Las Vegas</span></div>
+      <div class="weight-row"><span class="weight-label">700</span><span class="weight-sample" style="font-family:var(--font-body);font-weight:700;font-size:var(--text-h3);">Old School Italian Restaurant Las Vegas</span></div>
+    </div>
+  </section>
+
+  <!-- ── LETTERSPACING DEMO ── -->
+  <section class="sect">
+    <p class="section-title">Tracking — DM Sans</p>
+    <div class="tracking-demo">
+      <div class="tracking-row"><span class="track-label">-0.02em</span><span style="letter-spacing:-0.02em;">Las Vegas</span></div>
+      <div class="tracking-row"><span class="track-label">Normal</span><span>Las Vegas</span></div>
+      <div class="tracking-row"><span class="track-label">+0.05em</span><span style="letter-spacing:0.05em;">Las Vegas</span></div>
+      <div class="tracking-row"><span class="track-label">+0.10em</span><span style="letter-spacing:0.1em;">LAS VEGAS</span></div>
+      <div class="tracking-row"><span class="track-label">+0.25em</span><span style="letter-spacing:0.25em;text-transform:uppercase;">LAS VEGAS</span></div>
+    </div>
+  </section>
+
+  <!-- ── MENU / MONOSPACE ── -->
+  <section class="sect sect-warm">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+      <div>
+        <p class="section-title">Menu Pricing — Tabular Numerals</p>
+        <div class="menu-specimen">
+          <div class="menu-item">
+            <div><div class="menu-item-name">Linguini &amp; Clams</div><div class="menu-item-desc">White wine, garlic, fresh parsley</div></div>
+            <span class="menu-item-price">24</span>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Chicken Parmigiana</div><div class="menu-item-desc">House marinara, mozzarella, basil</div></div>
+            <span class="menu-item-price">28</span>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Osso Buco</div><div class="menu-item-desc">Braised veal shank, gremolata, risotto</div></div>
+            <span class="menu-item-price">42</span>
+          </div>
+          <div class="menu-item">
+            <div><div class="menu-item-name">Tiramisu</div><div class="menu-item-desc">Espresso-soaked ladyfingers, mascarpone</div></div>
+            <span class="menu-item-price">14</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-title">Monospace — JetBrains Mono</p>
+        <div class="weight-ladder">
+          <div class="weight-row"><span class="weight-label" style="min-width:8ch;">400</span><span class="weight-sample-mono" style="font-weight:400;">Open Daily · Sun–Thu 11am–10pm</span></div>
+          <div class="weight-row"><span class="weight-label" style="min-width:8ch;">500</span><span class="weight-sample-mono" style="font-weight:500;color:var(--accent-wine);">7700 Las Vegas Blvd S · NV 89123</span></div>
+          <div class="weight-row"><span class="weight-label" style="min-width:8ch;">tabular</span><span class="weight-sample-mono" style="font-variant-numeric:tabular-nums;">(702) 736-4939 · 24.00 28.00 42.00</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GLYPH SET ── -->
+  <section class="sect">
+    <p class="section-title">Glyphs — Cormorant Garamond</p>
+    <div class="glyph-grid">
+      <div class="glyph-cell">A</div><div class="glyph-cell">B</div><div class="glyph-cell">C</div>
+      <div class="glyph-cell">D</div><div class="glyph-cell">E</div><div class="glyph-cell">F</div>
+      <div class="glyph-cell">G</div><div class="glyph-cell">H</div><div class="glyph-cell">I</div>
+      <div class="glyph-cell">J</div><div class="glyph-cell">K</div><div class="glyph-cell">L</div>
+      <div class="glyph-cell">M</div><div class="glyph-cell">N</div><div class="glyph-cell">O</div>
+      <div class="glyph-cell">P</div><div class="glyph-cell">Q</div><div class="glyph-cell">R</div>
+      <div class="glyph-cell">S</div><div class="glyph-cell">T</div><div class="glyph-cell">U</div>
+      <div class="glyph-cell">V</div><div class="glyph-cell">W</div><div class="glyph-cell">X</div>
+      <div class="glyph-cell">Y</div><div class="glyph-cell">Z</div><div class="glyph-cell">a</div>
+      <div class="glyph-cell">b</div><div class="glyph-cell">c</div><div class="glyph-cell">d</div>
+      <div class="glyph-cell">e</div><div class="glyph-cell">f</div><div class="glyph-cell">g</div>
+      <div class="glyph-cell">h</div><div class="glyph-cell">i</div><div class="glyph-cell">j</div>
+      <div class="glyph-cell">k</div><div class="glyph-cell">l</div><div class="glyph-cell">m</div>
+      <div class="glyph-cell">n</div><div class="glyph-cell">o</div><div class="glyph-cell">p</div>
+      <div class="glyph-cell">q</div><div class="glyph-cell">r</div><div class="glyph-cell">s</div>
+      <div class="glyph-cell">t</div><div class="glyph-cell">u</div><div class="glyph-cell">v</div>
+      <div class="glyph-cell">w</div><div class="glyph-cell">x</div><div class="glyph-cell">y</div>
+      <div class="glyph-cell">z</div><div class="glyph-cell">0</div><div class="glyph-cell">1</div>
+      <div class="glyph-cell">2</div><div class="glyph-cell">3</div><div class="glyph-cell">4</div>
+      <div class="glyph-cell">5</div><div class="glyph-cell">6</div><div class="glyph-cell">7</div>
+      <div class="glyph-cell">8</div><div class="glyph-cell">9</div><div class="glyph-cell">&amp;</div>
+      <div class="glyph-cell">$</div><div class="glyph-cell">&cent;</div><div class="glyph-cell">.</div>
+      <div class="glyph-cell">,</div><div class="glyph-cell">!</div><div class="glyph-cell">?</div>
+      <div class="glyph-cell">&ldquo;</div><div class="glyph-cell">&rdquo;</div><div class="glyph-cell">&lsquo;</div>
+      <div class="glyph-cell">&rsquo;</div><div class="glyph-cell">&mdash;</div><div class="glyph-cell">&ndash;</div>
+    </div>
+  </section>
+
+  <!-- ── FONT STACK SUMMARY ── -->
+  <section class="sect sect-dark" style="text-align:center;">
+    <p class="section-title" style="color:rgba(255,255,255,0.3);">Font Stacks</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:0.5rem;">
+      <div class="stack-card" style="border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);">
+        <span class="stack-card-label" style="color:rgba(255,255,255,0.4);">Display</span>
+        <span class="stack-card-sample" style="font-family:var(--font-display);color:#fff;">Cormorant Garamond</span>
+      </div>
+      <div class="stack-card" style="border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);">
+        <span class="stack-card-label" style="color:rgba(255,255,255,0.4);">Body</span>
+        <span class="stack-card-sample" style="font-family:var(--font-body);color:#fff;">DM Sans</span>
+      </div>
+      <div class="stack-card" style="border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);">
+        <span class="stack-card-label" style="color:rgba(255,255,255,0.4);">Monospace</span>
+        <span class="stack-card-sample" style="font-family:var(--font-mono);color:var(--accent-gold);">JetBrains Mono</span>
+      </div>
+    </div>
+    <p style="margin-top:2rem;font-family:var(--font-body);font-size:var(--text-small);color:rgba(255,255,255,0.3);">Loaded via Google Fonts · Cormorant Garamond 300–700 · DM Sans 200–600 · Preview at 1200px max</p>
+  </section>
+
+</div>
+</body>
+</html>
