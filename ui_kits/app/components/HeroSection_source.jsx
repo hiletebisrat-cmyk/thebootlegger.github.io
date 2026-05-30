@@ -58,7 +58,7 @@ const HeroSection = ({ slides: propSlides, title, subtitle, ctaText, showLogo, v
     overflow: 'hidden',
     borderRadius: isBanner ? 0 : 'var(--radius-lg)',
     minHeight: isBanner
-      ? 'clamp(140px, 22vh, 300px)'
+      ? 'clamp(180px, 28vh, 360px)'
       : 'clamp(300px, 40vh, 440px)',
     height: 'auto',
   };

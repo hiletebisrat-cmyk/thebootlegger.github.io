@@ -54,11 +54,14 @@ const App = () => {
       title: "Live Music Every Night",
       subtitle: "No Cover — No Minimum. From jazz duos to The Fat City Horns in The Copa Room.",
       ctaText: "See Entertainment",
+      image: "../../mpsvg323-SantaFe_featured.avif",
+      backgroundPosition: "center 15%",
     },
     {
       title: "A Family Tradition Since 1949",
       subtitle: "Four generations of authentic Italian cooking — The Bootlegger Italian Bistro, Las Vegas.",
       ctaText: "Read Our Story",
+      image: "../../mpsvh620-Screen-Shot-2022-06-23-at-7_25_58-PM.avif",
     },
   ];
 
@@ -95,8 +98,8 @@ const App = () => {
     padding: 'var(--space-sm) var(--space-lg)',
     background: 'var(--surface)',
     borderBottom: '1px solid var(--border)',
-    display: 'flex',
-    justifyContent: 'space-between',
+    display: 'grid',
+    gridTemplateColumns: '1fr auto 1fr',
     alignItems: 'center',
     flexShrink: 0,
   };
@@ -111,6 +114,13 @@ const App = () => {
     display: 'flex',
     alignItems: 'center',
     gap: 'var(--space-md)',
+    justifySelf: 'end',
+  };
+
+  const topBarCenterStyles = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   const hamBtnStyles = {
@@ -554,13 +564,10 @@ const App = () => {
                   margin: 'calc(-1 * var(--space-lg)) calc(-1 * var(--space-lg)) var(--space-md)',
                 }} />
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-h3)', marginBottom: 'var(--space-2xs)', color: 'var(--fg)' }}>The Copa Room</h3>
-                <p style={{ fontSize: 'var(--text-meta)', color: 'var(--accent-gold)', fontWeight: 600, marginBottom: 'var(--space-sm)' }}>GRAND · SPECTACULAR</p>
+                <p style={{ fontSize: 'var(--text-meta)', color: 'var(--accent-red)', fontWeight: 600, marginBottom: 'var(--space-sm)' }}>GRAND · SPECTACULAR</p>
                 <p style={{ fontSize: 'var(--text-small)', color: 'var(--muted)', marginBottom: 'var(--space-md)', lineHeight: 1.6 }}>Accommodates 50–180 guests. Live music stage, full bar, dance floor — the quintessential Vegas venue.</p>
-                <span className="badge badge-gold" style={{ marginBottom: 'var(--space-md)', fontSize: '0.6rem', letterSpacing: '0.05em' }}>50–180 Guests</span>
-                <a href="#" className="btn" style={{
-                  background: 'linear-gradient(135deg, var(--accent-gold), oklch(62% 0.14 70))',
-                  color: 'var(--fg)', width: '100%', fontWeight: 600,
-                }}>Book Event</a>
+                <span className="badge badge-red" style={{ marginBottom: 'var(--space-md)', fontSize: '0.6rem', letterSpacing: '0.05em' }}>50–180 Guests</span>
+                <a href="#" className="btn btn-primary" style={{ width: '100%' }}>Book Event</a>
               </div>
             </div>
             <div style={{
@@ -827,12 +834,6 @@ const App = () => {
                 <span style={hamLine} />
               </button>
             )}
-            <img
-              src="../../build/logo.avif"
-              alt="The Bootlegger"
-              style={{ height: 28, width: 'auto', display: 'block' }}
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
-            />
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-small)', fontWeight: 600, color: 'var(--fg)' }}>
               The Bootlegger
             </span>
@@ -842,6 +843,14 @@ const App = () => {
             }}>
               South Strip Las Vegas
             </span>
+          </div>
+          <div style={topBarCenterStyles}>
+            <img
+              src="../../build/logo.avif"
+              alt="The Bootlegger"
+              style={{ height: 48, width: 'auto', display: 'block' }}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            />
           </div>
           <div className="topbar-gap" style={topBarRightStyles}>
             <span className="topbar-hours" style={{ fontSize: 'var(--text-meta)', color: 'var(--muted)' }}>
